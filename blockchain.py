@@ -33,7 +33,7 @@ class Blockchain(object):
         self.chain = []
         self.nodes = set()
         
-        # Create the genesis block
+        # genesis block
         self.new_block(previous_hash=1, proof=100)
     
     def porta(self):
@@ -41,10 +41,10 @@ class Blockchain(object):
     
     def new_block(self, proof, previous_hash=None):
         """
-        Create a new Block in the Blockchain
-        :param proof: <int> The proof given by the Proof of Work algorithm
-        :param previous_hash: (Optional) <str> Hash of previous Block
-        :return: <dict> New Block
+        Cria um novo bloco na Blockchain
+        :param proof: <int> Prova dada pelo algoritomo de PoW
+        :param previous_hash: (Optional) <str> Hash do bloco anterior 
+        :return: <dict> Novo Bloco
         
         """
 
@@ -56,7 +56,7 @@ class Blockchain(object):
             'previous_hash': previous_hash or self.hash(self.chain[-1]),
         }
 
-        # Reset the current list of transactions
+        # Nova lista de transações
         self.current_transactions = []
 
         self.chain.append(block)
@@ -64,11 +64,11 @@ class Blockchain(object):
 
     def new_transaction(self, sender, recipient, amount):
         """
-        Creates a new transaction to go into the next mined Block
-        :param sender: <str> Address of the Sender
-        :param recipient: <str> Address of the Recipient
-        :param amount: <int> Amount
-        :return: <int> The index of the Block that will hold this transaction
+        Nova transação que vai para o proximo bloco minerado
+        :param sender: <str> De:
+        :param recipient: <str> Para:
+        :param amount: <int> Valor
+        :return: <int> O index do bloco para onde vai a transação
         """
         self.current_transactions.append({
             'sender': sender,
@@ -81,15 +81,15 @@ class Blockchain(object):
 
     def register_node(self,address):
         """
-        Add a new node to the list of nodes
-        :param address: <str> Address of node. Eg. 'http://localhost:5000'
+        Add novo node para a lista de nodes
+        :param address: <str> endereço do Node. Ex. 'http://localhost:5000'
         :return: None
         """
         parsed_url = urlparse(address)
         if parsed_url.netloc:
             self.nodes.add(parsed_url.netloc)
         elif parsed_url.path:
-            # Accepts an URL without scheme like '192.168.0.5:5000'.
+            # só aceita endereços do estilo: '192.168.0.5:5000'.
             self.nodes.add(parsed_url.path)
         else:
             raise ValueError('Invalid URL')
@@ -98,9 +98,9 @@ class Blockchain(object):
     def valid_chain(self,chain):
         
         """
-        Determine if a given blockchain is valid
-        :param chain: <list> A blockchain
-        :return: <bool> True if valid, False if not
+        Validar um bloco
+        :param chain: <list> blockchain
+        :return: <bool> True se valido, Flase se invalido
         """
 
         last_block = chain[0]
@@ -112,11 +112,11 @@ class Blockchain(object):
             print(f'{block}')
             print("\n-----------\n")
 
-            # check if the hash of the block is legit
+            # checar se a hash é legit
             if block['previous_hash'] != self.hash(last_block):
                 return False
             
-            # check if the PoW is legit
+            # checar se a PoW é legit
             if not self.valid_proof(last_block["proof"],block["proof"]):
                 return False
             
@@ -126,17 +126,17 @@ class Blockchain(object):
     
     def resolve_conflicts(self):
         """
-        This is our Consensus Algorithm, it resolves conflicts
-        by replacing our chain with the longest one in the network.
-        :return: <bool> True if our chain was replaced, False if not
+        Este é o  Algoritmo de Consenso, ele resolve conflitos
+        substituindo a nossa cadeia de transações pela mais longa na rede de nodes. O satoshi é que manda 
+        :return: <bool> True se a cadeia foi substituida, False se não.
         """
         neighbours = self.nodes
         new_chain = None
 
-        # We want a chain bigger than ours
+        # max length da cadeia corrente
         max_length = len(self.chain)
 
-        #  Grab and verify the chains from all the nodes is our network
+        #  Ver todas as cadeias na rede de nodes
         for node in neighbours:
             url = "http://"+str(node)+"/chain"
             response = rq.get(url)
@@ -144,12 +144,12 @@ class Blockchain(object):
                 length = response.json()['length']
                 chain = response.json()["chain"]
 
-                # Check if the lenght is longer and the chain is valid
+                # vereficar se a cadeia é legit e se é maior q a nossa
                 if length > max_length and self.valid_chain(chain):
                     max_length = length
                     new_chain = chain
 
-        # Replace our chain if we discovered a new, valid chain longer than ours
+        # Subsituir a nossa cadeia se encontrarmos uma legit e maior 
         if new_chain:
             self.chain = new_chain
             return True
@@ -162,21 +162,21 @@ class Blockchain(object):
     @staticmethod
     def hash(block):
         """
-        Creates a SHA-256 hash of a Block
-        :param block: <dict> Block
+        Cria a SHA-256 hash do bloco
+        :param block: <dict> Bloco
         :return: <str>
         """
 
-        # We must make sure that the Dictionary is Ordered, or we'll have inconsistent hashes
+        # Temos q ter a certeza de que o dicionário está ordenado, ou vamos ter hashes inconsistentes
         block_string = json.dumps(block, sort_keys=True).encode()
         return hashlib.sha256(block_string).hexdigest()
 
     def proof_of_work(self, last_proof):
         
         """
-        Simple Proof of Work Algorithm:
-         - Find a number p' such that hash(pp') contains leading 4 zeroes, where p is the previous p'
-         - p is the previous proof, and p' is the new proof
+        Proof of Work:
+         - Encontre um número p' tal que hash(pp') contenha 4 zeros à esquerda, onde p é o p' anterior
+         - p é a prova anterior e p' é a nova prova
         :param last_proof: <int>
         :return: <int>
         """
@@ -190,10 +190,10 @@ class Blockchain(object):
     @staticmethod
     def valid_proof(last_proof, proof):
         """
-        Validates the Proof: Does hash(last_proof, proof) contain 4 leading zeroes?
-        :param last_proof: <int> Previous Proof
-        :param proof: <int> Current Proof
-        :return: <bool> True if correct, False if not.
+        Valida a prova: hash(last_proof, proof) contém 4 zeros à esquerda
+        :param last_proof: <int> Prova anterior 
+        :param proof: <int> Prova atual
+        :return: <bool> True se sim, False se não.
         """
 
         guess = f'{last_proof}{proof}'.encode()
@@ -209,9 +209,9 @@ class Blockchain(object):
 """
 endpoints
 
-    /transactions/new     create a new transaction to a block
-    /mine                 tell our server to mine a new block.
-    /chain                return the full Blockchain.
+    /transactions/new     criar uma nova transação para um bloco.
+    /mine                 minerar outro bloco.
+    /chain                ver transações.
 
 """
 
@@ -221,11 +221,11 @@ endpoints
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
-# Generate a globally unique address for this node and wallet
+#Endereço do node
 
 node_identifier = str(uuid4()).replace('-', '')
 
-# Instantiate the Blockchain
+# Inicia a Blockchain
 blockchain = Blockchain()
 
 @app.route('/mine', methods=['GET'])
@@ -233,20 +233,20 @@ def mine():
 
     rq.get("http://localhost:"+str(porta)+"/nodes/resolve")
 
-    # We run the proof of work algorithm to get the next proof...
+    # Rodar PoW para obter a proxima prova
     last_block = blockchain.last_block
     last_proof = last_block['proof']
     proof = blockchain.proof_of_work(last_proof)
 
-    # We must receive a reward for finding the proof.
-    # The sender is "0" to signify that this node has mined a new coin.
+    # premio de mineração.
+    # De "0" pois é um premio de mineração
     blockchain.new_transaction(
         sender="0",
         recipient=node_identifier,
         amount=1,
     )
 
-    # Forge the new Block by adding it to the chain
+    # criar novo bloco
     previous_hash = blockchain.hash(last_block)
     block = blockchain.new_block(proof, previous_hash)
 
@@ -264,12 +264,12 @@ def mine():
 def new_transaction():
     values = request.get_json()
 
-    # Check that the required fields are in the POST'ed data
+    # POST completo
     required = ['sender', 'recipient', 'amount']
     if not all(k in values for k in required):
         return 'Missing values', 400
 
-    # Create a new Transaction
+    # Criar nova transação
     index = blockchain.new_transaction(values['sender'], values['recipient'], values['amount'])
 
     response = {'message': f'A trasação realizada com sucesso: Bloco {index}'}
