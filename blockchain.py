@@ -267,7 +267,7 @@ def new_transaction():
     # POST completo
     required = ['sender', 'recipient', 'amount']
     if not all(k in values for k in required):
-        return 'Missing values', 400
+        return 'Valores em falta', 400
 
     # Criar nova transação
     index = blockchain.new_transaction(values['sender'], values['recipient'], values['amount'])
@@ -292,12 +292,12 @@ def register_nodes():
     nodes = values.get("nodes")
     
     if nodes is  None:
-        return "Error Please supply a valid list of nodes "+str(nodes),400
+        return "Erro ao adicinar Node "+str(nodes),400
     
     for node in nodes:
         blockchain.register_node(node)
     response = {
-        "message" : "New nodes have been added",
+        "message" : "Novo node foi adicionado à pool",
         "total nodes" : list(blockchain.nodes),
     }
     return json.dumps(response, sort_keys=True, indent=4), 201
@@ -310,13 +310,13 @@ def concensus():
 
         if replaced:
             response = {
-                "message" : "Our Chain was replaced",
+                "message" : "A corrente foi atualizada",
                 "new chain": blockchain.chain
             }
 
         else:
             response = {
-                "message" : "Our chain is authoritative'",
+                "message" : "A corrente está atualizada'",
                 "new chain": blockchain.chain
             }
     
