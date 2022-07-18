@@ -3,7 +3,7 @@
 </p>
 <h1 align="center"> Methereum </h1>
 
-<h1 align="center"> This is a simple implementation of Blockchain and a wallet client in python3.</h1>
+<h3 align="center"> This is a simple implementation of Blockchain and a wallet client in python3.</h3>
 
 ## Getting started
 
@@ -11,5 +11,8 @@ The only dependencies that you will need are `PySimpleGUI` and `Flask` , which c
 
 ```bash
 pip install PySimpleGUI
+```
+
 ```bash
 pip install Flask
+```
