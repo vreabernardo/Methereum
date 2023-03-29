@@ -12,17 +12,9 @@
 The dependencies that you will need are `PySimpleGUI`, `Flask`, `qrcode` and `pillow ` which can be installed easily via `pip`:
 
 ```bash
-pip install PySimpleGUI
+pip install PySimpleGUI pillow Flask qrcode
 ```
-```bash
-pip install Flask
-```
-```bash
-pip install qrcode
-```
-```bash
-pip install pillow
-```
+
 To get started, navigate to a directory where you want to use the project, then clone it with:
 
 ```bash
