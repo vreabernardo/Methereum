@@ -1,4 +1,9 @@
 <p align="center">
+    <img width=45% src="https://user-images.githubusercontent.com/45080358/228402681-84ef33f6-c752-4679-bd6b-ca3e5fcc5c98.png">
+</p>
+
+
+<p align="center">
 <h1 align="center"> Methereum </h1>
 <h3 align="center"> This is a simple implementation of Blockchain and a wallet client compatible with multiple node usage in python3.</h3>
 
