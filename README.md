@@ -37,11 +37,9 @@ To start the blockchain, run the following command:
 ```bash
 python3 blockchain.py
 ```
-You will be prompted to choose a port number.
+You will then be prompted to choose a port number for your node to operate on.
 
-<p align="center">
-    <img width=60% src="https://user-images.githubusercontent.com/45080358/179635863-dd939504-0977-478f-911b-3015f3e1ef50.png">
-</p>
+Once you have selected a port, everything will be set in motion, and you can proceed to launch the wallet client.
 
 ### Running the Client
 To run the client, execute the following command:
