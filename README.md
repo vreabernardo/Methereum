@@ -1,5 +1,5 @@
 <p align="center">
-    <img width=45% src="https://user-images.githubusercontent.com/45080358/228402681-84ef33f6-c752-4679-bd6b-ca3e5fcc5c98.png">
+    <img width=45% src="![giphy](https://github.com/vreabernardo/Methereum/assets/45080358/12762c43-d405-4d22-a14c-db2fc74c0e36)">
 </p>
 
 <p align="center">
