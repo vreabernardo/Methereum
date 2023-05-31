@@ -9,10 +9,9 @@ from urllib.parse import urlparse
 import requests as rq
 import PySimpleGUI as sg
 
-logo = sg.Image("logo.png")
+
 
 layout = [
-    [sg.Column([[logo]], justification='center')],
     [sg.Column([[sg.Text('Porta: ', size =(15, 1)), sg.InputText()],
     [sg.Submit(), sg.Cancel()]], justification='center')],
 ]
