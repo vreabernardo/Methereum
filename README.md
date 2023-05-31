@@ -1,6 +1,7 @@
 <p align="center">
-    <img width=45% src="![giphy](https://github.com/vreabernardo/Methereum/assets/45080358/12762c43-d405-4d22-a14c-db2fc74c0e36)">
+    <img width=25% src="https://github.com/vreabernardo/Methereum/assets/45080358/7c24f2f0-fb68-495a-a524-fe2ef337a3c2">
 </p>
+
 
 <p align="center">
 <h1 align="center"> Methereum </h1>
