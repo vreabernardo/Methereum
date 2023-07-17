@@ -1,5 +1,5 @@
 <p align="center">
-    <img width=25% src="https://github.com/vreabernardo/Methereum/assets/45080358/7c24f2f0-fb68-495a-a524-fe2ef337a3c2">
+    <img width=25% src="https://github.com/vreabernardo/SuperCoin/assets/45080358/7c24f2f0-fb68-495a-a524-fe2ef337a3c2">
 </p>
 
 
@@ -24,12 +24,12 @@ pip install PySimpleGUI Flask qrcode pillow
 ### Installation
 To get started, clone the repository by running the following command in your desired directory:
 ```bash
-git clone https://github.com/vreaw/Methereum.git
+git clone https://github.com/vreaw/SuperCoin.git
 ```
 
 After cloning the repository, navigate to the project directory:
 ```bash
-cd Methereum
+cd SuperCoin
 ```
 
 ### Starting the Blockchain
