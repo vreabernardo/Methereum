@@ -53,7 +53,11 @@ The client is now ready to use.
 </p>
 
 
+## Future Implementations 
 
+- Smart Contracts
+- Web User Interface
+- ...
 
 
 
