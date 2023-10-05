@@ -52,56 +52,8 @@ The client is now ready to use.
     <img width=60% src="https://user-images.githubusercontent.com/45080358/179635917-2bee1828-40d7-4a16-b874-477cde67e041.png">
 </p>
 
-## Code Documentation
 
-The code is documented using inline comments to explain the purpose and functionality of each section. Below is an overview of the main components:
 
-### Blockchain Class
 
-#### `new_block(proof, previous_hash=None)`
-Creates a new block in the blockchain with the given proof and optional previous hash.
 
-#### `new_transaction(sender, recipient, amount)`
-Adds a new transaction to the current block.
 
-#### `register_node(address)`
-Adds a new node to the list of nodes.
-
-#### `valid_chain(chain)`
-Validates a chain of blocks to ensure its integrity.
-
-#### `resolve_conflicts()`
-Resolves conflicts between different nodes by replacing the current chain with the longest valid chain in the network.
-
-#### `last_block`
-Returns the last block in the chain.
-
-#### `hash(block)`
-Calculates the SHA-256 hash of a block.
-
-#### `proof_of_work(last_proof)`
-Performs the proof-of-work algorithm to find the next valid proof.
-
-#### `valid_proof(last_proof, proof)`
-Validates a proof by checking if it meets the required criteria.
-
-### Flask Endpoints
-
-#### `/mine`
-GET request to mine a new block.
-
-#### `/transactions/new`
-POST request to create a new transaction.
-
-#### `/chain`
-GET request to view the full blockchain.
-
-#### `/nodes/register`
-POST request to register new nodes.
-
-#### `/nodes/resolve`
-GET request to resolve conflicts and update the blockchain.
-
-### Wallet Creation
-
-The code includes a `create_wallet()` function that generates a new wallet address using the UUIDv4 format. This function can be used to create unique wallet addresses for users.
