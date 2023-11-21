@@ -5,7 +5,7 @@
 
 <p align="center">
 <h1 align="center"> SuperCoin </h1>
-<h3 align="center"> This is a simple implementation of a Blockchain and a wallet client compatible with multiple node usage in Python 3.</h3>
+<h3 align="center"> This is a simple implementation of a Blockchain and a wallet client in Python 3.</h3>
 
 ## Getting Started
 
